@@ -10,7 +10,7 @@
         </div>
         <ul class="nav">
           <li v-for="item in navList" :key="item.href">
-            <a class="menu-text" :href="item.herf">{{item.text}}</a>
+            <span class="menu-text" @click="goPage(item.route)">{{item.text}}</span>
           </li>
         </ul>
         <p>时光正好，未来可期，加油 ！
@@ -27,21 +27,26 @@ export default {
       navList: [
         {
           text: '知识库',
-          herf: './repository/index.html'
+          route: '/repository'
         },
         {
           text: '学习打卡',
-          herf: './src/views/study/study.html'
+          route: '/study'
         },
         {
           text: '演示项目',
-          herf: './src/views/items/items.html'
+          route: '/items'
         },
         {
           text: 'Github',
-          herf: 'https://github.com/bigyifeng/bigyifeng.github.io'
+          route: 'https://github.com/bigyifeng/bigyifeng.github.io'
         },
       ],
+    }
+  },
+  methods: {
+    goPage (path) {
+      this.$router.push(path)
     }
   },
 }
@@ -103,12 +108,9 @@ h1 {
   color: #409eff;
   min-width: 80px;
   font-size: 20px;
+  cursor: pointer;
 }
 
-.nav li a {
-  color: #409eff;
-  font-size: 20px;
-}
 p {
   color: #43b98e;
   font-size: 20px;
