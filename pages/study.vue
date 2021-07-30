@@ -191,7 +191,7 @@ export default {
   },
   methods: {
     getMonth (date) { return new Date(date).getMonth() + 1 }
-  },
+  }
 }
 </script>
 

@@ -36,7 +36,7 @@ export default {
         },
         {
           text: '演示项目',
-          path: '/items/v3_admin'
+          path: '/items'
         },
         {
           text: 'Github',
