@@ -179,6 +179,11 @@ export default {
       ],
       diary: `asyncData和fetch的区别：asyncData主要用来修改当前页面组件的数据，而fetch主要用来修改vuex里面的数据（因为fetch的参数可以调用store这个变量）`,
     },
+    {
+      date: `2021/7/28`,
+      value: [`使用nuxt重构网站`],
+      diary: `学以致用`,
+    },
     ]
     return {
       dataList

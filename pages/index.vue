@@ -5,12 +5,12 @@
       <div class="content w">
         <div class="logo">
           <img
-            src="https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_c8d760a0-8307-11eb-a3eb-d500e74411b7/5d531e1b-4681-4b53-85f9-7883b6d3c168.png"
+            src="/image/可达鸭.png"
             alt="">
         </div>
         <ul class="nav">
           <li v-for="item in navList" :key="item.href">
-            <span class="menu-text" @click="goPage(item.route)">{{item.text}}</span>
+            <span class="menu-text" @click="goPage(item.path)">{{item.text}}</span>
           </li>
         </ul>
         <p>时光正好，未来可期，加油 ！
@@ -21,32 +21,37 @@
 </template>
 
 <script>
+import { isRoute } from '@/utils/utils'
 export default {
   data () {
     return {
       navList: [
         {
           text: '知识库',
-          route: '/repository'
+          path: '/repository'
         },
         {
           text: '学习打卡',
-          route: '/study'
+          path: '/study'
         },
         {
           text: '演示项目',
-          route: '/items'
+          path: '/items/v3_admin'
         },
         {
           text: 'Github',
-          route: 'https://github.com/bigyifeng/bigyifeng.github.io'
+          path: 'https://github.com/bigyifeng/bigyifeng.github.io'
         },
       ],
     }
   },
   methods: {
     goPage (path) {
-      this.$router.push(path)
+      if (isRoute(path)) {
+        this.$router.push(path)
+        return
+      }
+      window.location.href = path
     }
   },
 }
@@ -57,7 +62,7 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 700px;
-  background: url('https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_c8d760a0-8307-11eb-a3eb-d500e74411b7/31d0b252-932b-4ea2-8531-9b1ff117436a.jpeg')
+  background: url('/image/317546.jpg')
     no-repeat;
   background-size: cover;
 }
