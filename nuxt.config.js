@@ -1,9 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'github_blog',
+    title: '易风个个人网站',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'zh-cn'
     },
     meta: [
       { charset: 'utf-8' },
