@@ -11,6 +11,7 @@ export default {
       { hid: 'description', name: 'description', content: '这是我洪一锋自己的个人网站，主要用来记录自己的学习和对知识的积累' },
       { name: 'keywords', content: '易风,洪一锋,洪一峰,学习,博客,个人网站,yifeng,bigyifeng' },
       { name: 'format-detection', content: 'telephone=17786456397' },
+      { name: 'baidu-site-verification', content: 'code-PIGVGK7Hy5' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
