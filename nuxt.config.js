@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: '易风个个人网站',
+    title: '易风个人网站',
     htmlAttrs: {
       lang: 'zh-cn'
     },
