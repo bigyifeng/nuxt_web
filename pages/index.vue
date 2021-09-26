@@ -10,7 +10,7 @@
         </div>
         <ul class="nav">
           <li v-for="item in navList" :key="item.href">
-            <span class="menu-text" @click="goPage(item.path)">{{item.text}}</span>
+            <span class="menu-text" @click="goToPage(item.path)">{{item.text}}</span>
           </li>
         </ul>
         <p>时光正好，未来可期，加油 ！
@@ -28,7 +28,7 @@ export default {
       navList: [
         {
           text: '知识库',
-          path: '/repository'
+          path: 'http://note.hongyifeng.cn'
         },
         {
           text: '学习打卡',
@@ -46,7 +46,7 @@ export default {
     }
   },
   methods: {
-    goPage (path) {
+    goToPage (path) {
       if (isRoute(path)) {
         this.$router.push(path)
         return

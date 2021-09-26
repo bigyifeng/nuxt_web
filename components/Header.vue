@@ -6,7 +6,7 @@
         <header class="w">
           <div class="title"><a @click.prevent="$router.push('/')">易风 YiFeng</a> </div>
           <ul class="nav">
-            <li v-for="item in navList" :key="item.path" @click="$router.push(item.path)">
+            <li v-for="item in navList" :key="item.path" @click="goToPage(item.path)">
               <a class="menu-text">{{item.text}}</a>
             </li>
           </ul>
@@ -25,21 +25,23 @@
 </template>
 
 <script>
+import { isRoute } from '@/utils/utils'
+
 export default {
   components: {},
   data () {
     return {
       navList: [{
         text: '个人简历（建设中）',
-        path: './src/views/me/me.html'
+        path: ''
       },
       {
         text: '知识库',
-        path: '/repository'
+        path: 'http://note.hongyifeng.cn'
       },
       {
         text: '学习打卡',
-        path: 'study'
+        path: '/study'
       },
       {
         text: '演示项目',
@@ -47,7 +49,7 @@ export default {
       },
       {
         text: '联系方式（建设中）',
-        path: './src/404.html'
+        path: ''
       }]
     };
   },
@@ -55,7 +57,15 @@ export default {
   watch: {},
   created () { },
   mounted () { },
-  methods: {}
+  methods: {
+    goToPage (path) {
+      if (isRoute(path)) {
+        this.$router.push(path)
+        return
+      }
+      window.location.href = path
+    }
+  }
 };
 </script>
 

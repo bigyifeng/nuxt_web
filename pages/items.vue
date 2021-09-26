@@ -29,21 +29,21 @@ export default {
     const itemLIst = [
       {
         name: '后台管理系统',
-        path: 'admin.hongyifeng.cn',
+        path: 'http://admin.hongyifeng.cn',
         imgUrl: 'https://static.vue-js.com/6280b990-ff19-11ea-85f6-6fac77c0c9b3.png',
         brief: '使用vue3，TypeScript，Element-Plus做的一个后台管理系统，主要用于学习vue3和ts',
         tags: ['vue3', 'TypeScript', 'echarts', 'Element-Plus']
       },
       {
         name: '笔记',
-        path: 'note.hongyifeng.cn',
+        path: 'http://note.hongyifeng.cn',
         imgUrl: 'https://vuepress.vuejs.org/hero.png',
         brief: '使用vuePress做的一个在线笔记网站，主要用于记录平时开发中遇到的问题，方便自己在后续开发中再遇到同样的问题时能快速解决问题',
         tags: ['vuePress', 'MackDown']
       },
       {
         name: '吃喝玩乐随机选',
-        path: 'note.hongyifeng.cn',
+        path: '',
         imgUrl: '/image/可达鸭.png',
         brief: '使用uniapp做的一个微信小程序。已上线，可以通过微信搜索。',
         tags: ['uni-app', '微信小程序']
@@ -56,7 +56,7 @@ export default {
   methods: {
     gotoPage (url) {
       if (!url) return
-      window.open('//' + url)
+      window.open(url)
     }
   },
 }
