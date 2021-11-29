@@ -4,9 +4,7 @@
       <h1 class="hide">洪一锋</h1>
       <div class="content w">
         <div class="logo">
-          <img
-            src="/image/可达鸭.png"
-            alt="">
+          <img src="https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_a46d2830-510b-11ec-943b-511504fccf92/f8397150-b817-4ec4-b147-a2d5b7b3eaba.png" alt="">
         </div>
         <ul class="nav">
           <li v-for="item in navList" :key="item.href">
@@ -45,6 +43,10 @@ export default {
       ],
     }
   },
+  mounted () {
+    const whiteScreen = new Date() - performance.timing.navigationStart
+    console.log('页面白屏时间', whiteScreen);
+  },
   methods: {
     goToPage (path) {
       if (isRoute(path)) {
@@ -62,8 +64,7 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 700px;
-  background: url('/image/317546.jpg')
-    no-repeat;
+  background: url('https://assets-service.obs.cn-south-1.myhuaweicloud.com/test/mp_48cabef0-1044-11ec-851a-276d2c8d5c81/5ca51862-6ad9-4678-b17e-41e13c95dd39.jpeg') no-repeat;
   background-size: cover;
 }
 .bg {
