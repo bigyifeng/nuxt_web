@@ -1,18 +1,19 @@
 <template>
   <div class="main">
-    <div class="bg">
+    <div v-loading="!loadEnd" class="bg">
       <h1 class="hide">洪一锋</h1>
       <div class="content w">
         <div class="logo">
-          <img src="https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_a46d2830-510b-11ec-943b-511504fccf92/f8397150-b817-4ec4-b147-a2d5b7b3eaba.png" alt="">
+          <img
+            src="https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_a46d2830-510b-11ec-943b-511504fccf92/f8397150-b817-4ec4-b147-a2d5b7b3eaba.png"
+            alt="">
         </div>
-        <ul class="nav">
+        <ul class="nav" :class="[loadEnd?'':'before']">
           <li v-for="item in navList" :key="item.href">
             <span class="menu-text" @click="goToPage(item.path)">{{item.text}}</span>
           </li>
         </ul>
-        <p>时光正好，未来可期，加油 ！
-        </p>
+        <p :class="[loadEnd?'':'before']">时光正好，未来可期，加油 ！ </p>
       </div>
     </div>
   </div>
@@ -37,13 +38,20 @@ export default {
           path: '/items'
         },
         {
+          text: '联系我',
+          path: '/contactUs'
+        },
+        {
           text: 'Github',
           path: 'https://github.com/bigyifeng/bigyifeng.github.io'
         },
       ],
+      loadEnd: false, // 页面加载完毕,
     }
   },
   mounted () {
+    this.loadEnd = true
+
     const whiteScreen = new Date() - performance.timing.navigationStart
     console.log('页面白屏时间', whiteScreen);
   },
@@ -64,8 +72,10 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 700px;
-  background: url('https://assets-service.obs.cn-south-1.myhuaweicloud.com/test/mp_48cabef0-1044-11ec-851a-276d2c8d5c81/5ca51862-6ad9-4678-b17e-41e13c95dd39.jpeg') no-repeat;
+  background: url('https://assets-service.obs.cn-south-1.myhuaweicloud.com/test/mp_48cabef0-1044-11ec-851a-276d2c8d5c81/5ca51862-6ad9-4678-b17e-41e13c95dd39.jpeg')
+    no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 .bg {
   width: 100%;
@@ -81,6 +91,7 @@ h1 {
 }
 
 .content {
+  position: relative;
   width: 700px;
   height: auto;
   padding: 50px 0;
@@ -108,6 +119,7 @@ h1 {
   background: rgba(255, 255, 255, 0.7);
   padding: 20px;
   border-radius: 30px;
+  transition: all 2s;
 }
 
 .nav li {
@@ -116,12 +128,23 @@ h1 {
   font-size: 20px;
   cursor: pointer;
 }
+.nav li:hover {
+  color: rgb(126, 0, 115);
+}
+
+.nav.before {
+  transform: translateX(-1500px);
+}
 
 p {
   color: #43b98e;
   font-size: 20px;
   text-align: center;
   margin-top: 20px;
+  transition: all 2s;
+}
+p.before {
+  transform: translateX(1500px);
 }
 
 /* 背景虚化 */
