@@ -4,15 +4,23 @@
     <div id="header">
       <div class="header_bg">
         <header class="w">
-          <div class="title"><a @click.prevent="$router.push('/')">易风 YiFeng</a> </div>
+          <div class="title">
+            <a @click.prevent="$router.push('/')">易风 YiFeng</a>
+          </div>
           <ul class="nav">
-            <li v-for="item in navList" :key="item.path" @click="goToPage(item.path)">
-              <a class="menu-text">{{item.text}}</a>
+            <li
+              v-for="item in navList"
+              :key="item.path"
+              @click="goToPage(item.path)"
+            >
+              <a class="menu-text">{{ item.text }}</a>
             </li>
           </ul>
           <div class="right">
-            <a href="https://github.com/bigyifeng/bigyifeng.github.io"
-              class="blog-github iconfont github">
+            <a
+              href="https://github.com/bigyifeng/bigyifeng.github.io"
+              class="blog-github iconfont github"
+            >
               GitHub
             </a>
           </div>
@@ -29,44 +37,46 @@ import { isRoute } from '@/utils/utils'
 
 export default {
   components: {},
-  data () {
+  data() {
     return {
-      navList: [{
-        text: '个人简历（建设中）',
-        path: ''
-      },
-      {
-        text: '知识库',
-        path: 'http://note.hongyifeng.cn'
-      },
-      {
-        text: '学习打卡',
-        path: '/study'
-      },
-      {
-        text: '演示项目',
-        path: '/items'
-      },
-      {
-        text: '联系方式（建设中）',
-        path: ''
-      }]
-    };
+      navList: [
+        {
+          text: '个人简历（建设中）',
+          path: '',
+        },
+        {
+          text: '知识库',
+          path: 'http://note.hongyifeng.cn',
+        },
+        {
+          text: '学习打卡',
+          path: '/study',
+        },
+        {
+          text: '演示项目',
+          path: '/items',
+        },
+        {
+          text: '关于我',
+          path: '/contactUs',
+        },
+      ],
+    }
   },
   computed: {},
   watch: {},
-  created () { },
-  mounted () { },
+  created() {},
+  mounted() {},
   methods: {
-    goToPage (path) {
+    goToPage(path) {
       if (isRoute(path)) {
         this.$router.push(path)
         return
       }
       window.location.href = path
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <style scoped>

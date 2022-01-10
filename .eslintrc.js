@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     "no-console": "off",
     "no-return-assign": "off",
+    "prefer-const": "off",
   }
 }

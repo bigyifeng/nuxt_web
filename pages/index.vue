@@ -38,7 +38,7 @@ export default {
           path: '/items'
         },
         {
-          text: '联系我',
+          text: '关于我',
           path: '/contactUs'
         },
         {
