@@ -1,5 +1,5 @@
 <template>
-  <div v-cloak v-loading="isLoading" class="bg" >
+  <div v-cloak v-loading="isLoading" class="bg">
     <div class="contact w module">
       <div class="title">关于我</div>
       <p class="desc">
@@ -11,20 +11,13 @@
     </div>
     <div class="module w">
       <div class="title">留言</div>
-      <el-input
-        v-model.trim="message"
-        type="textarea"
-        placeholder="在此处输入你的留言"
-        maxlength="500"
-        rows="5"
-        resize="none"
-        @keydown.enter="setComment"
-      ></el-input>
+      <el-input v-model.trim="message" type="textarea" placeholder="在此处输入你的留言" maxlength="500"
+        rows="5" resize="none" @keydown.enter="setComment"></el-input>
 
       <el-button class="comment-btn" @click="setComment">留言</el-button>
 
       <h3>留言列表</h3>
-      <div class="comment-list">
+      <div class="comment-list" ref="commentList">
         <div v-for="comment in dataList" :key="comment.id" class="comment">
           <div class="comment_header">
             <img class="comment_img" :src="comment.userImg" alt="" />
@@ -43,33 +36,159 @@
 
 <script>
 // import dayjs from 'dayjs'
-import {getDateDiff}  from "@/utils/utils"
+import { getDateDiff } from "@/utils/utils"
 export default {
   filters: {
-    dateFilter(val) {
+    dateFilter (val) {
       return getDateDiff(val)
-      // return dayjs(val).format('YYYY-MM-DD HH:mm:ss')
     },
   },
   layout: 'hasHeader',
-  data() {
+  data () {
     const dataList = []
     return {
       message: '',
       dataList,
-      isLoading:true
+      isLoading: true
     }
   },
-  created() {
+  created () {
     this.getCommentList()
   },
+  mounted () {
+    const timer = setInterval(() => {
+      if (this.isLoading === false) {
+        clearInterval(timer)
+        console.log(111111111);
+        let html = this.$refs.commentList.innerHTML
+        console.log(html);
+        const list = [
+          "微笑",
+          "撇嘴",
+          "色",
+          "发呆",
+          "得意",
+          "流泪",
+          "害羞",
+          "闭嘴",
+          "睡",
+          "大哭",
+          "尴尬",
+          "发怒",
+          "调皮",
+          "呲牙",
+          "惊讶",
+          "难过",
+          "酷",
+          "冷汗",
+          "抓狂",
+          "吐",
+          "偷笑",
+          "可爱",
+          "白眼",
+          "傲慢",
+          "饥饿",
+          "困",
+          "惊恐",
+          "流汗",
+          "憨笑",
+          "大兵",
+          "奋斗",
+          "咒骂",
+          "疑问",
+          "嘘",
+          "晕",
+          "折磨",
+          "衰",
+          "骷髅",
+          "敲打",
+          "再见",
+          "擦汗",
+          "抠鼻",
+          "鼓掌",
+          "糗大了",
+          "坏笑",
+          "左哼哼",
+          "右哼哼",
+          "哈欠",
+          "鄙视",
+          "委屈",
+          "快哭了",
+          "阴险",
+          "亲亲",
+          "吓",
+          "可怜",
+          "菜刀",
+          "西瓜",
+          "啤酒",
+          "篮球",
+          "乒乓",
+          "咖啡",
+          "饭",
+          "猪头",
+          "玫瑰",
+          "凋谢",
+          "示爱",
+          "爱心",
+          "心碎",
+          "蛋糕",
+          "闪电",
+          "炸弹",
+          "刀",
+          "足球",
+          "瓢虫",
+          "便便",
+          "月亮",
+          "太阳",
+          "礼物",
+          "拥抱",
+          "强",
+          "弱",
+          "握手",
+          "胜利",
+          "抱拳",
+          "勾引",
+          "拳头",
+          "差劲",
+          "爱你",
+          "NO",
+          "OK",
+          "爱情",
+          "飞吻",
+          "跳跳",
+          "发抖",
+          "怄火",
+          "转圈",
+          "磕头",
+          "回头",
+          "跳绳",
+          "挥手",
+          "激动",
+          "街舞",
+          "献吻",
+          "左太极",
+          "右太极"
+        ];
+
+        /* eslint-disable */
+
+        /* eslint-enable */
+        list.forEach((it, index) => {
+          let regexp = new RegExp(`\\\[${it}\\\]`, "g")  // eslint-disable-line
+          html = html.replace(regexp, `<img class='emo' src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/${index}.gif">`)
+        })
+        this.$refs.commentList.innerHTML = html
+      }
+    }, 200);
+  },
   methods: {
-    async getCommentList() {
+    async getCommentList () {
       const res = await this.$axios.get('/comment/list')
       this.dataList = res.data.reverse()
-      this.isLoading=false
+      this.$set(this.dataList)
+      this.isLoading = false
     },
-    async setComment() {
+    async setComment () {
       if (!this.message) return this.$message.error('留言不可为空！')
       await this.$axios.post('/comment/add', { content: this.message })
       this.message = ''
@@ -162,5 +281,9 @@ h3 {
   color: #515767;
   margin-top: 8px;
   -webkit-line-clamp: 6;
+}
+/deep/ .emo {
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>
