@@ -42,6 +42,7 @@ export default {
     'element-ui/lib/theme-chalk/index.css',
     '@/asset/css/reset.css',
     '@/asset/css/acss.css',
+    '@/asset/css/iconfont.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
