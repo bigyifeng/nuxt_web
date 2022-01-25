@@ -40,7 +40,7 @@
               {{ comment.createdAt | dateFilter }}
             </div>
           </div>
-          <div class="comment_content">{{ comment.content }}</div>
+          <div class="comment_content" v-html="comment.content"></div>
         </div>
       </div>
     </div>
@@ -58,7 +58,6 @@ export default {
   },
   layout: 'hasHeader',
   data () {
-    const dataList = []
     const emotionList = [
       "微笑",
       "撇嘴",
@@ -168,38 +167,26 @@ export default {
     ];
     return {
       message: '',
-      dataList,
+      dataList: [],
       emotionList,
       isLoading: true
-    }
-  },
-  computed: {
-    dataListComputed () {
-      return this.dataList
     }
   },
   created () {
     this.getCommentList()
   },
-  mounted () {
-    const timer = setInterval(() => {
-      if (this.isLoading === false) {
-        clearInterval(timer)
-        let html = this.$refs.commentList.innerHTML
-
-        this.emotionList.forEach((it, index) => {
-          let regexp = new RegExp(`\\\[${it}\\\]`, "g")  // eslint-disable-line
-          html = html.replace(regexp, `<img class='emo' src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/${index}.gif">`)
-        })
-        this.$refs.commentList.innerHTML = html
-      }
-    }, 200);
-  },
   methods: {
     async getCommentList () {
-      const res = await this.$axios.get('/comment/list')
-      this.dataList = res.data.reverse()
-      this.isLoading = false
+      const { data } = await this.$axios.get('/comment/list')
+      // 表情替换
+      data.dataList.forEach(item => {
+        this.emotionList.forEach((it, idx) => {
+          let regexp = new RegExp(`\\\[${it}\\\]`, "g")  // eslint-disable-line
+          item.content = item.content.replace(regexp, `<img class='emo' src="https://res.wx.qq.com/mpres/htmledition/images/icon/emotion/${idx}.gif">`)
+        })
+      })
+      this.dataList = data.dataList
+      this.isLoading && (this.isLoading = false)
     },
     async setComment () {
       if (!this.message) return this.$message.error('留言不可为空！')
@@ -304,6 +291,7 @@ h3 {
   color: #515767;
   margin-top: 8px;
   -webkit-line-clamp: 6;
+  max-width: 100%;
 }
 
 /deep/ .emo {
