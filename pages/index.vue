@@ -3,7 +3,7 @@
     <div v-loading="!loadEnd" class="bg">
       <h1 class="hide">洪一锋</h1>
       <div class="content w">
-        <div class="logo">
+        <div class="logo" :class="[loadEnd?'rotate':'']">
           <img
             src="https://assets-service.obs.cn-south-1.myhuaweicloud.com/production/mp_a46d2830-510b-11ec-943b-511504fccf92/f8397150-b817-4ec4-b147-a2d5b7b3eaba.png"
             alt="">
@@ -99,11 +99,19 @@ h1 {
 }
 
 .logo {
-  animation: smallToBig 2s linear infinite alternate;
+  /* animation: smallToBig 2s linear infinite alternate; */
   margin: 0 auto;
   width: 170px;
   height: 170px;
   margin-bottom: 20px;
+}
+/* 头像旋转 */
+.logo.rotate {
+  transform: rotate(666turn);
+  transition-delay: 1s;
+  transition-property: all;
+  transition-duration: 59s;
+  transition-timing-function: cubic-bezier(0.34, 0, 0.84, 1);
 }
 
 .logo img {
