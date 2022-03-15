@@ -30,8 +30,8 @@ export default {
           path: 'http://note.hongyifeng.cn'
         },
         {
-          text: '学习打卡',
-          path: '/study'
+          text: '学习目标',
+          path: '/flag'
         },
         {
           text: '演示项目',

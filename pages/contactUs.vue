@@ -20,7 +20,7 @@
           <template #content>
             <div class="select-emoji">
               <Emotion v-for="emojiItem in emotionList" :key="emojiItem"
-                :emotionName='emojiItem' @click.native="addEmoji(emojiItem)" />
+                :emotion-name='emojiItem' @click.native="addEmoji(emojiItem)" />
             </div>
           </template>
           <i class="iconfont blog-xiaolian"></i>
@@ -30,7 +30,7 @@
       </div>
 
       <h3>留言列表</h3>
-      <div class="comment-list" ref="commentList">
+      <div ref="commentList" class="comment-list">
         <div v-for="comment in dataList" :key="comment.id" class="comment">
           <div class="comment_header">
             <img class="comment_img" :src="comment.userImg" alt="" />
@@ -177,7 +177,7 @@ export default {
   },
   methods: {
     async getCommentList () {
-      const { data } = await this.$axios.get('/comment/list')
+      const { data } = await this.$axios.get('http://hongyifeng.cn:3000/comment/list')
       // 表情替换
       data.dataList.forEach(item => {
         this.emotionList.forEach((it, idx) => {
@@ -190,7 +190,7 @@ export default {
     },
     async setComment () {
       if (!this.message) return this.$message.error('留言不可为空！')
-      await this.$axios.post('/comment/add', { content: this.message })
+      await this.$axios.post('http://hongyifeng.cn:3000/comment/add', { content: this.message })
       this.message = ''
       this.getCommentList()
     },
